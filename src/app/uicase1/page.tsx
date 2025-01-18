@@ -20,14 +20,16 @@ export default function EmpoweringArtisans() {
       </p>
 
       <div className="flex justify-center">
-  {/* PDF Viewer with disabled download option and light blue border */}
-  <iframe
-    src="/u1.pdf#toolbar=0"  // Correct path to the file in the public folder
-    width="100%"
-    height="600px"
-    className="border-2 border-light-blue-300 rounded-md" // Light blue border
-    //sandbox="allow-scripts allow-same-origin" // Disable download and other actions
-  />
+  
+  
+  {/* Image Section */}
+  <div className="flex justify-center">
+        <img
+          src="/casestudy.png" // Replace with the correct path to your image
+          alt="Young Artisan at Work"
+          className="rounded-md shadow-md max-w-full h-auto"
+        />
+      </div>
 </div>
 
     </div>
