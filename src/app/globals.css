@@ -1,9 +1,14 @@
+/* Apply Lobster and Poppins fonts globally */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@700&display=swap');
+
+/* Tailwind utility setup */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Root variables */
 :root {
-  --background: #ffffff;
+  --background: #FEE5EB;
   --foreground: #171717;
 }
 
@@ -14,8 +19,41 @@
   }
 }
 
+/* Font settings */
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Lobster font for specific text */
+h1, .lobster-text {
+  font-family: 'Lobster', cursive;
+}
+
+/* Poppins font for other text */
+p, .poppins-text {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Glow animation for the circle and border */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 10px 2px rgba(251, 111, 146, 0.5); /* #FB6F92 */
+  }
+  50% {
+    box-shadow: 0 0 25px 5px rgba(251, 111, 146, 0.8); /* #FB6F92 */
+  }
+  100% {
+    box-shadow: 0 0 10px 2px rgba(251, 111, 146, 0.5); /* #FB6F92 */
+  }
+}
+
+.animate-pulseGlow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Border color update */
+.border-glow {
+  border: 4px solid #FB6F92;
 }

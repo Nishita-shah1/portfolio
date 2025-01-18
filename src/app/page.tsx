@@ -1,7 +1,8 @@
-import Nav from '@/components/Nav'
-import Hero from '@/components/Hero'
-import Experience from '@/components/Experience'
-import Skills from '@/components/Skills'
+// pages/home/page.tsx
+import Nav from '@/components/Nav';
+import Hero from '@/components/Hero';
+import Experience from '@/components/Experience';
+import Skills from '@/components/Skills';
 
 export default function Home() {
   return (
@@ -11,6 +12,5 @@ export default function Home() {
       <Experience />
       <Skills />
     </div>
-  )
+  );
 }
-
