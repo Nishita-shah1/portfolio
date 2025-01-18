@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 type NavItem = {
   name: string;
@@ -11,23 +11,44 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { name: 'About me', href: '#hero' },
-  { name: 'My work', href: '#skills' },
   { name: 'Experience', href: '#experience' },
-  { name: 'Skills', href: '#skil' },
+  { name: 'My work', href: '#skills' },
+
+  { name: 'Skills', href: '#skillset' },
   { name: 'Contact me', href: '#contact' },
 ];
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
   const pathname = usePathname();
-  const currentSection = pathname.split('#')[1] || 'about';
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navItems.map(item => item.href.slice(1));
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom > 100;
+        }
+        return false;
+      });
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <nav className="w-full py-4 bg-transparent">
+    <nav className="w-full py-4 bg-white bg-opacity-90 backdrop-blur-sm fixed top-0 left-0 z-50 shadow-md">
       {/* Desktop Navigation */}
       <div className="hidden md:flex justify-center w-full gap-6">
         {navItems.map((item) => (
@@ -36,7 +57,7 @@ export default function Nav() {
             href={item.href}
             className={`px-6 py-2 rounded-full text-sm transition-all duration-300
               text-black 
-              ${item.href.includes(currentSection)
+              ${item.href.slice(1) === activeSection
                 ? 'border-2 border-pink-500 shadow-[0_0_15px_rgba(236,72,153,0.5)]'
                 : 'hover:bg-pink-100 hover:shadow-[0_0_10px_rgba(236,72,153,0.3)]'
               }
@@ -70,7 +91,7 @@ export default function Nav() {
                   href={item.href}
                   className={`px-6 py-2 rounded-full text-sm transition-all duration-300
                     text-black 
-                    ${item.href.includes(currentSection)
+                    ${item.href.slice(1) === activeSection
                       ? 'border-2 border-pink-500 shadow-[0_0_15px_rgba(236,72,153,0.5)]'
                       : 'hover:bg-pink-100 hover:shadow-[0_0_10px_rgba(236,72,153,0.3)]'
                     }
@@ -89,3 +110,4 @@ export default function Nav() {
     </nav>
   );
 }
+

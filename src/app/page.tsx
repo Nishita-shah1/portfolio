@@ -3,6 +3,8 @@ import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import Experience from '@/components/Experience';
 import Skills from '@/components/Skills';
+import Skillset from '@/components/Skillset';
+import ContactMe from '@/components/ContactMe';
 
 export default function Home() {
   return (
@@ -11,6 +13,8 @@ export default function Home() {
       <Hero />
       <Experience />
       <Skills />
+      <Skillset />
+      <ContactMe />
     </div>
   );
 }

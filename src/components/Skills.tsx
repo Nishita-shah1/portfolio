@@ -4,9 +4,9 @@ import Link from 'next/link';
 export default function Skills() {
   const skills = [
     { name: 'UI/UX', bg: 'from-pink-100/80 to-lavender-100/80', href: '/ui' },
-    { name: 'WEB DEVELOPMENT', bg: 'from-lavender-100/80 to-pink-100/80', href: '/web-development' },
-    { name: 'MACHINE LEARNING', bg: 'from-pink-100/80 to-lavender-100/80', href: '/machine-learning' },
-    { name: 'OTHER SKILLS', bg: 'from-lavender-100/80 to-pink-100/80', href: '/other-skills' },
+    { name: 'WEB DEVELOPMENT', bg: 'from-lavender-100/80 to-pink-100/80', href: '/webdev' },
+    { name: 'MACHINE LEARNING', bg: 'from-pink-100/80 to-lavender-100/80', href: '/ml' },
+    { name: 'OTHER SKILLS', bg: 'from-lavender-100/80 to-pink-100/80', href: '/other' },
   ];
 
   return (

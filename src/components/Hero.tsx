@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export default function Hero() {
   return (
-    <section id="hero" className="w-full px-4 py-12 flex flex-col md:flex-row items-center justify-center gap-20 bg-[#FEE5EB]">
+    <section id="hero" className="w-full px-4 py-24 flex flex-col md:flex-row items-center justify-center gap-20 bg-[#FEE5EB]">
       {/* Profile image with enlarged circle and glow */}
       <div className="relative w-[300px] h-[300px] rounded-full overflow-hidden shadow-lg animate-pulseGlow mb-8">
         <Image
