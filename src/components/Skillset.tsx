@@ -11,6 +11,9 @@ const Skillset: React.FC = () => {
       'React.js',
       'MongoDB',
       'Matplotlib',
+      'Scikit-learn',
+      'Numpy',
+      'Panda',
 
     ],
     tools: ['GitHub', 'Figma', 'Adobe Illustrator'],
