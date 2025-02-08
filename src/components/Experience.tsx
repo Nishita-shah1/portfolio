@@ -13,7 +13,7 @@ const Experience: React.FC = () => {
     {
       period: 'August 2024-December 2024',
       company: 'Greensizz Private Limited',
-      role: 'Research Associate in Web Development & UI/UX Designer',
+      role: 'Research Associate in Web Development ',
       description:
         'Led the development of an e-commerce platform with MERN stack, boosting active users by 1,000+ and improving load time by 30%, while incorporating WhatsApp API to drive a 50% increase in user engagement.',
       active: false,
@@ -21,7 +21,7 @@ const Experience: React.FC = () => {
     {
       period: 'June 2024-August 2024',
       company: 'Sponsogram',
-      role: 'Machine Learning Engineer & Designer',
+      role: 'Machine Learning Engineer',
       description:
         'Engineered 2 machine learning models for user analysis, processing 1,000+ interactions, and contributed to the design, achieving a 15% increase in user engagement and a 10% improvement in customer satisfaction.',
       active: false,

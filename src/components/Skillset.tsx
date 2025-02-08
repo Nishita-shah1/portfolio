@@ -3,21 +3,15 @@ import React from 'react';
 const Skillset: React.FC = () => {
   const skills = {
     technical: [
-      'Python',
-      'Java',
       'C++',
+      'Python',
       'HTML',
       'CSS',
       'JavaScript',
       'React.js',
-      'Express.js',
-      'Node.js',
-      'Next.js',
       'MongoDB',
-      'Scikit-learn',
-      'Dart',
       'Matplotlib',
-      'Leaflet.js',
+
     ],
     tools: ['GitHub', 'Figma', 'Adobe Illustrator'],
     softSkills: [
@@ -34,7 +28,8 @@ const Skillset: React.FC = () => {
       'Data Structures',
       'Algorithms',
       'Data Science',
-      'Software Engineering',
+      'Operating Systems',
+      'Machine Learning Algorithms',
     ],
   };
 
