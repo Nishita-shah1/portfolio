@@ -131,16 +131,31 @@ export default function Experience() {
                                 </li>
                               ))}
                             </ul>
-                            {item.certificate && (
-                              <a
-                                href={item.certificate}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={(event) => event.stopPropagation()}
-                                className="relative z-20 mt-4 inline-flex text-sm font-medium text-rose hover:underline"
-                              >
-                                View GSoC certificate
-                              </a>
+                            {(item.certificate || item.journal) && (
+                              <div className="mt-4 flex flex-wrap gap-4">
+                                {item.journal && (
+                                  <a
+                                    href={item.journal}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(event) => event.stopPropagation()}
+                                    className="relative z-20 inline-flex text-sm font-medium text-rose hover:underline"
+                                  >
+                                    Read the GSoC journal
+                                  </a>
+                                )}
+                                {item.certificate && (
+                                  <a
+                                    href={item.certificate}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(event) => event.stopPropagation()}
+                                    className="relative z-20 inline-flex text-sm font-medium text-rose hover:underline"
+                                  >
+                                    View GSoC certificate
+                                  </a>
+                                )}
+                              </div>
                             )}
                           </div>
                         </motion.div>

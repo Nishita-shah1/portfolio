@@ -24,7 +24,10 @@ const highlights = [
     kind: "word" as const,
     value: "GSoC",
     label: "Contributor, Google Summer of Code 2026, with the R Project for Statistical Computing.",
-    href: "/certificate",
+    links: [
+      { href: "/certificate", label: "Open certificate" },
+      { href: "https://nishitagsocblog.netlify.app/", label: "GSoC journal" },
+    ],
   },
 ];
 
@@ -114,8 +117,20 @@ export default function About() {
                   )}
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-ink/70">{item.label}</p>
-                {"href" in item && item.href && (
-                  <p className="mt-3 text-xs font-medium text-rose">Open certificate</p>
+                {"links" in item && item.links && (
+                  <div className="mt-3 flex flex-wrap gap-3">
+                    {item.links.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-xs font-medium text-rose hover:underline"
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
                 )}
               </>
             );
@@ -127,19 +142,6 @@ export default function About() {
               whileHover: { y: -6 },
               className: "rounded-3xl border border-white/80 bg-white/75 p-5 shadow-petal",
             };
-            if ("href" in item && item.href) {
-              return (
-                <motion.a
-                  key={item.label}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  {...motionProps}
-                >
-                  {body}
-                </motion.a>
-              );
-            }
             return (
               <motion.article key={item.label} {...motionProps}>
                 {body}

@@ -42,6 +42,7 @@ export type Experience = {
   summary: string;
   points: string[];
   certificate?: string;
+  journal?: string;
 };
 
 export const experiences: Experience[] = [
@@ -56,8 +57,10 @@ export const experiences: Experience[] = [
       "Contributed to the R Project for Statistical Computing through animint2, where plots, selections, and animation are declared in R and rendered for the web.",
       "Worked across the program window from May 25 to September 7, 2026.",
       "Finished as a GSoC 2026 contributor.",
+      "Kept a public journal of the Animint2 work: polygon holes, the C++ path for getCommonChunk(), and the weekly review notes.",
     ],
     certificate: "/certificate",
+    journal: "https://nishitagsocblog.netlify.app/",
   },
   {
     period: "May 2026 - Jul 2026",
