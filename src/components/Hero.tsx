@@ -34,7 +34,7 @@ export default function Hero() {
             className="mb-4 inline-flex items-center gap-2 rounded-full border border-line bg-card/70 px-3 py-1 font-mono text-xs text-rose"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-rose" />
-            {profile.school} · CSE-AI ’27 · {profile.location}
+            {profile.school} · CSE-AI ’27
           </motion.p>
 
           <motion.h1
