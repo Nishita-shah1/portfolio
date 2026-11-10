@@ -31,7 +31,7 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#f6c1d4] bg-white/70 px-3 py-1 font-mono text-xs text-rose"
+            className="mb-4 inline-flex items-center gap-2 rounded-full border border-line bg-card/70 px-3 py-1 font-mono text-xs text-rose"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-rose" />
             {profile.school} · CSE-AI ’27 · {profile.location}
@@ -83,7 +83,7 @@ export default function Hero() {
               href={profile.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-[#f6c1d4] bg-white/80 px-5 py-3 text-sm font-medium transition hover:-translate-y-0.5 hover:border-rose"
+              className="rounded-full border border-line bg-card/80 px-5 py-3 text-sm font-medium transition hover:-translate-y-0.5 hover:border-rose"
             >
               LinkedIn
             </a>
@@ -91,7 +91,7 @@ export default function Hero() {
               href={profile.github}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-[#f6c1d4] bg-white/80 px-5 py-3 text-sm font-medium transition hover:-translate-y-0.5 hover:border-rose"
+              className="rounded-full border border-line bg-card/80 px-5 py-3 text-sm font-medium transition hover:-translate-y-0.5 hover:border-rose"
             >
               GitHub
             </a>
@@ -104,8 +104,8 @@ export default function Hero() {
           transition={{ delay: 0.15 }}
           className="relative mx-auto h-[420px] w-full max-w-md"
         >
-          <div className="spin-slow absolute left-1/2 top-1/2 h-[340px] w-[340px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-[#f472b6]/80" />
-          <div className="absolute left-1/2 top-1/2 h-[300px] w-[250px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[2rem] border-4 border-white shadow-petal">
+          <div className="spin-slow absolute left-1/2 top-1/2 h-[340px] w-[340px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-rose/70" />
+          <div className="absolute left-1/2 top-1/2 h-[300px] w-[250px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[2rem] border-4 border-card shadow-petal">
             <Image
               src="/me.jpg"
               alt="Portrait of Nishita Shah"
@@ -126,7 +126,7 @@ export default function Hero() {
             return (
               <div
                 key={chip.label}
-                className={`drift absolute ${positions[chipIndex]} rounded-2xl border border-white/80 bg-white/85 px-3 py-2 shadow-petal backdrop-blur`}
+                className={`drift absolute ${positions[chipIndex]} rounded-2xl border border-line bg-card/85 px-3 py-2 shadow-petal backdrop-blur`}
                 style={{ animationDelay: `${chipIndex * 0.6}s` }}
               >
                 <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-rose">{chip.detail}</p>
@@ -137,7 +137,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <div className="marquee mx-auto mt-16 max-w-6xl overflow-hidden rounded-full border border-[#f6c1d4] bg-white/60 py-3">
+      <div className="marquee mx-auto mt-16 max-w-6xl overflow-hidden rounded-full border border-line bg-card/60 py-3">
         <div className="marquee-track">
           {[...marquee, ...marquee].map((item, itemIndex) => (
             <span key={`${item}-${itemIndex}`} className="mx-4 text-sm text-ink/70">

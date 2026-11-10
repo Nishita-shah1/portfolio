@@ -5,7 +5,7 @@ export default function EmpoweringArtisans() {
   const router = useRouter();
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
+    <div className="mx-auto min-h-screen max-w-4xl px-4 py-12">
       {/* Back Button */}
       <button
         onClick={() => router.back()} // Navigates to the previous page (Skills or Home page)
@@ -14,8 +14,8 @@ export default function EmpoweringArtisans() {
         Back
       </button>
 
-      <h1 className="text-3xl font-bold text-gray-700 mb-6">Netflix Mobile View App Wireframe</h1>
-      <p className="text-lg text-gray-600 mb-6">
+      <h1 className="text-3xl font-bold text-ink mb-6">Netflix Mobile View App Wireframe</h1>
+      <p className="text-lg text-ink/70 mb-6">
         I designed a Netflix wireframe to streamline the user interface and enhance the browsing experience. The layout focuses on intuitive navigation, optimized for seamless content discovery. Key features include personalized recommendations, trending categories, and an interactive watchlist.
       </p>
 

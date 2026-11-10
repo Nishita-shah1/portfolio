@@ -37,7 +37,7 @@ export default function Experience() {
         <h2 className="mt-4 font-display text-4xl sm:text-5xl">Where the work happened</h2>
 
         <div ref={trackRef} className="relative mt-14">
-          <div className="absolute bottom-0 left-[7px] top-0 w-px bg-[#f6c1d4] md:left-1/2" />
+          <div className="absolute bottom-0 left-[7px] top-0 w-px bg-line md:left-1/2" />
           <div
             className={`journey-bead absolute left-[7px] z-20 h-3.5 w-3.5 -translate-x-1/2 rounded-full bg-rose shadow-[0_0_16px_rgba(226,59,120,0.7)] md:left-1/2 ${
               parkTop !== null ? "is-parked" : ""
@@ -60,14 +60,14 @@ export default function Experience() {
                     ref={(node) => {
                       stops.current[index] = node;
                     }}
-                    className={`absolute top-7 z-10 h-3.5 w-3.5 -translate-x-1/2 rounded-full border-2 border-white ${
-                      isOpen ? "bg-rose" : "bg-[#f9a8d4]"
+                    className={`absolute top-7 z-10 h-3.5 w-3.5 -translate-x-1/2 rounded-full border-2 border-blush ${
+                      isOpen ? "bg-rose" : "bg-rose/45"
                     } left-0 md:left-auto ${onLeft ? "md:right-0 md:translate-x-1/2" : "md:left-0 md:-translate-x-1/2"}`}
                   />
 
                   <article
-                    className={`overflow-hidden rounded-[1.6rem] border bg-white/85 shadow-petal transition ${
-                      isOpen ? "border-rose" : "border-white"
+                    className={`overflow-hidden rounded-[1.6rem] border bg-card/85 shadow-petal transition ${
+                      isOpen ? "border-rose" : "border-line"
                     }`}
                   >
                     <button
@@ -89,7 +89,7 @@ export default function Experience() {
                         className={`inline-flex shrink-0 items-center gap-1 rounded-full border px-3 py-1 text-xs font-medium ${
                           isOpen
                             ? "border-rose bg-rose text-white"
-                            : "border-[#f6c1d4] bg-[#fff0f5] text-rose"
+                            : "border-line bg-wash text-rose"
                         }`}
                       >
                         {isOpen ? "Close" : "Open"}
@@ -120,7 +120,7 @@ export default function Experience() {
                           transition={{ duration: 0.35, ease: "easeOut" }}
                           className="overflow-hidden"
                         >
-                          <div className="border-t border-[#f6c1d4] px-5 pb-5 pt-4">
+                          <div className="border-t border-line px-5 pb-5 pt-4">
                             <p className="font-mono text-xs text-rose">{`// ${item.place}`}</p>
                             <p className="mt-3 text-base text-ink/80">{item.summary}</p>
                             <ul className="mt-4 space-y-2">

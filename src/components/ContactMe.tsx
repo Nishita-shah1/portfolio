@@ -25,7 +25,7 @@ export default function ContactMe() {
 
   return (
     <section id="contact" className="px-5 pb-16 pt-12">
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-[2.2rem] border border-white bg-gradient-to-br from-white via-[#fff0f5] to-[#ffd6e6] p-8 shadow-petal sm:p-12">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-[2.2rem] border border-line bg-gradient-to-br from-card via-wash to-mist p-8 shadow-petal sm:p-12">
         <p className="font-mono text-xs text-rose">// 06 contact</p>
         <h2 className="mt-4 max-w-3xl font-display text-4xl leading-tight sm:text-6xl">
           If it involves code, a deadline, or a leaderboard, I am probably already in.
@@ -42,7 +42,7 @@ export default function ContactMe() {
           </button>
           <a
             href={`mailto:${profile.email}`}
-            className="rounded-full border border-[#f6c1d4] bg-white/80 px-5 py-3 text-sm font-medium hover:border-rose"
+            className="rounded-full border border-line bg-card/80 px-5 py-3 text-sm font-medium hover:border-rose"
           >
             {profile.email}
           </a>
@@ -55,7 +55,7 @@ export default function ContactMe() {
               href={link.href}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white bg-white/80 px-4 py-2 text-sm transition hover:-translate-y-1 hover:border-rose hover:text-rose"
+              className="inline-flex items-center gap-2 rounded-full border border-line bg-card/80 px-4 py-2 text-sm transition hover:-translate-y-1 hover:border-rose hover:text-rose"
             >
               <link.icon />
               {link.label}

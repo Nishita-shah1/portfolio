@@ -14,7 +14,7 @@ export default function Studio() {
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {studies.map((study) => {
             const card = (
-              <article className="group h-full overflow-hidden rounded-[1.7rem] border border-white bg-white/80 shadow-petal">
+              <article className="group h-full overflow-hidden rounded-[1.7rem] border border-line bg-card/80 shadow-petal">
                 <div className="relative h-52 overflow-hidden">
                   <Image
                     src={study.image}

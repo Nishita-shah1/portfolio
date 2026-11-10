@@ -28,7 +28,7 @@ export default function CertificatePage() {
         <object
           data="/gsoc-2026-certificate.pdf"
           type="application/pdf"
-          className="mt-6 h-[80vh] w-full rounded-2xl border border-[#f6c1d4] bg-white"
+          className="mt-6 h-[80vh] w-full rounded-2xl border border-line bg-card"
         >
           <p className="p-6 text-ink/70">
             The preview could not load. Use Open the PDF above.

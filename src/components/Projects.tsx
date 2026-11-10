@@ -62,7 +62,7 @@ export default function Projects() {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search name, stack, or idea"
-              className="w-full rounded-md border border-[#f6c1d4] bg-white/80 px-4 py-2.5 font-mono text-sm outline-none ring-rose/30 placeholder:text-ink/40 focus:ring-2"
+              className="w-full rounded-md border border-line bg-card/80 px-4 py-2.5 font-mono text-sm outline-none ring-rose/30 placeholder:text-ink/40 focus:ring-2"
             />
           </label>
         </div>
@@ -80,7 +80,7 @@ export default function Projects() {
         </div>
 
         {visible.length === 0 && (
-          <p className="mt-10 rounded-3xl border border-dashed border-[#f6c1d4] bg-white/60 px-6 py-10 text-center text-ink/70">
+          <p className="mt-10 rounded-3xl border border-dashed border-line bg-card/60 px-6 py-10 text-center text-ink/70">
             Nothing matched. Clear the search, or try another filter.
           </p>
         )}
@@ -127,16 +127,16 @@ function TiltCard({
       style={{
         transform: `perspective(900px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
       }}
-      className="group relative overflow-hidden rounded-[1.7rem] border border-white bg-white/80 p-6 shadow-petal transition-shadow hover:shadow-[0_22px_50px_rgba(226,59,120,0.2)]"
+      className="group relative overflow-hidden rounded-[1.7rem] border border-line bg-card/80 p-6 shadow-petal transition-shadow hover:shadow-[0_22px_50px_rgba(226,59,120,0.2)]"
     >
-      <div className="pointer-events-none absolute -right-8 -top-10 h-32 w-32 rounded-full bg-[#ffe0ec] blur-2xl transition group-hover:bg-[#ffc2d8]" />
+      <div className="pointer-events-none absolute -right-8 -top-10 h-32 w-32 rounded-full bg-rose/15 blur-2xl transition group-hover:bg-rose/25" />
       <div className="relative flex items-start justify-between gap-3">
         <div>
           <p className="font-mono text-[11px] text-rose">{`// ${project.category.toLowerCase()}`}</p>
           <h3 className="mt-1 font-display text-3xl">{project.name}</h3>
         </div>
         {project.live && (
-          <span className="rounded-full bg-[#ffe3ee] px-2.5 py-1 text-[11px] font-medium text-rose-deep">
+          <span className="rounded-full bg-wash px-2.5 py-1 text-[11px] font-medium text-rose">
             Live
           </span>
         )}
@@ -154,7 +154,7 @@ function TiltCard({
       )}
       <div className="relative mt-4 flex flex-wrap gap-2">
         {project.tags.map((tag) => (
-          <span key={tag} className="rounded-md bg-[#fff0f5] px-2.5 py-1 font-mono text-xs text-ink/70">
+          <span key={tag} className="rounded-md bg-wash px-2.5 py-1 font-mono text-xs text-ink/70">
             {tag}
           </span>
         ))}

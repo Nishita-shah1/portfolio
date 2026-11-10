@@ -3,6 +3,13 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+function toggleTheme() {
+  const root = document.documentElement;
+  const next = !root.classList.contains("dark");
+  root.classList.toggle("dark", next);
+  localStorage.setItem("theme", next ? "dark" : "light");
+}
+
 const navItems = [
   { name: "About", href: "#about" },
   { name: "Experience", href: "#experience" },
@@ -43,7 +50,7 @@ export default function Nav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/75 shadow-petal backdrop-blur-xl" : "bg-white/40 backdrop-blur-md"
+        scrolled ? "bg-card/75 shadow-petal backdrop-blur-xl" : "bg-card/40 backdrop-blur-md"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
@@ -61,7 +68,7 @@ export default function Nav() {
                 className={`rounded-full px-3.5 py-1.5 font-mono text-xs transition ${
                   on
                     ? "bg-rose text-white shadow-[0_8px_20px_rgba(226,59,120,0.28)]"
-                    : "text-ink/80 hover:bg-[#ffe3ee]"
+                    : "text-ink/80 hover:bg-wash"
                 }`}
               >
                 {item.name}
@@ -70,26 +77,53 @@ export default function Nav() {
           })}
         </nav>
 
-        <button
-          type="button"
-          className="rounded-full border border-[#f6c1d4] px-3 py-1.5 text-sm md:hidden"
-          aria-expanded={open}
-          aria-label="Toggle menu"
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? "Close" : "Menu"}
-        </button>
+        <div className="flex items-center gap-2">
+          <span className="font-mono text-[11px] tracking-wide text-ink/70">
+            <span className="dark:hidden">light mode</span>
+            <span className="hidden dark:inline">dark mode</span>
+          </span>
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label="Switch color theme"
+            className="theme-switch"
+          >
+            <span className="theme-knob">
+              <svg viewBox="0 0 24 24" className="theme-icon theme-sun" aria-hidden>
+                <circle cx="12" cy="12" r="4" fill="currentColor" />
+                <g stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8" />
+                </g>
+              </svg>
+              <svg viewBox="0 0 24 24" className="theme-icon theme-moon" aria-hidden>
+                <path
+                  fill="currentColor"
+                  d="M16.5 2.5a9 9 0 1 0 5 12.2A7.2 7.2 0 0 1 16.5 2.5z"
+                />
+              </svg>
+            </span>
+          </button>
+          <button
+            type="button"
+            className="rounded-full border border-line px-3 py-1.5 text-sm md:hidden"
+            aria-expanded={open}
+            aria-label="Toggle menu"
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? "Close" : "Menu"}
+          </button>
+        </div>
       </div>
 
       {open && (
-        <div className="border-t border-[#f6c1d4] bg-white/95 px-5 py-4 md:hidden">
+        <div className="border-t border-line bg-card/95 px-5 py-4 md:hidden">
           <div className="flex flex-col gap-2">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-2 font-mono text-sm hover:bg-[#ffe3ee]"
+                className="rounded-md px-3 py-2 font-mono text-sm hover:bg-wash"
               >
                 {item.name}
               </Link>
@@ -98,7 +132,7 @@ export default function Nav() {
         </div>
       )}
 
-      <div className="h-[3px] w-full bg-[#ffe3ee]">
+      <div className="h-[3px] w-full bg-wash">
         <div
           className="h-full bg-gradient-to-r from-[#f9a8d4] to-rose transition-[width] duration-150"
           style={{ width: `${progress * 100}%` }}

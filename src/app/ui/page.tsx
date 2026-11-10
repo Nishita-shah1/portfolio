@@ -31,7 +31,7 @@ export default function UI() {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
+    <div className="max-w-7xl mx-auto min-h-screen px-4 py-12">
       {/* Back Button */}
       <button
         onClick={() => router.back()} // Navigates to the previous page (Skills or Home page)
@@ -40,15 +40,15 @@ export default function UI() {
         Back
       </button>
 
-      <h1 className="text-3xl font-bold text-gray-700">UI/UX Skills</h1>
-      <p className="mt-4 text-lg text-black">Welcome to the UI/UX skills page!</p>
+      <h1 className="text-3xl font-bold text-ink">UI/UX Skills</h1>
+      <p className="mt-4 text-lg text-ink">Welcome to the UI/UX skills page!</p>
 
       {/* Card Grid */}
       <div className="flex flex-wrap gap-6 mt-12 justify-start">
         {cards.map((card, index) => (
           <div
             key={index}
-            className="bg-white rounded-lg shadow-lg overflow-hidden"
+            className="bg-card rounded-lg shadow-lg overflow-hidden"
             style={{ width: '400px', height: '500px' }} // Fixed width and height
           >
             <img
@@ -57,8 +57,8 @@ export default function UI() {
               className="w-full h-72 object-cover" // Adjusted image size
             />
             <div className="p-4">
-              <h3 className="text-xl font-semibold text-gray-800">{card.heading}</h3>
-              <p className="mt-2 text-gray-600 text-sm">
+              <h3 className="text-xl font-semibold text-ink">{card.heading}</h3>
+              <p className="mt-2 text-ink/70 text-sm">
                 {expandedIndex === index
                   ? card.description
                   : `${card.description.slice(0, 100)}...`} {/* Show only part of the description */}

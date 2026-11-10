@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,10 +10,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        blush: "#fff5f8",
-        ink: "#4a1830",
-        rose: "#e23b78",
-        "rose-deep": "#be185d",
+        blush: "rgb(var(--blush) / <alpha-value>)",
+        ink: "rgb(var(--ink) / <alpha-value>)",
+        rose: "rgb(var(--rose) / <alpha-value>)",
+        "rose-deep": "rgb(var(--rose-deep) / <alpha-value>)",
+        line: "rgb(var(--line) / <alpha-value>)",
+        card: "rgb(var(--card) / <alpha-value>)",
+        wash: "rgb(var(--wash) / <alpha-value>)",
+        mist: "rgb(var(--mist) / <alpha-value>)",
       },
       fontFamily: {
         display: ["var(--font-display)", "serif"],

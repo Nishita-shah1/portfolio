@@ -140,7 +140,7 @@ export default function About() {
               viewport: { once: true, amount: 0.4 },
               transition: { delay: index * 0.06 },
               whileHover: { y: -6 },
-              className: "rounded-3xl border border-white/80 bg-white/75 p-5 shadow-petal",
+              className: "rounded-3xl border border-line bg-card/75 p-5 shadow-petal",
             };
             return (
               <motion.article key={item.label} {...motionProps}>

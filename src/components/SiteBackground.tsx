@@ -31,20 +31,13 @@ export default function SiteBackground() {
 
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden>
-      <div className="absolute inset-0 bg-[#fff5f8]" />
+      <div className="absolute inset-0 bg-blush" />
+      <div className="site-grid absolute inset-0" />
+      <div className="blob-a absolute -left-24 -top-24 h-[28rem] w-[28rem] rounded-full blur-3xl" />
+      <div className="blob-b absolute right-[-8rem] top-[28%] h-[26rem] w-[26rem] rounded-full blur-3xl" />
+      <div className="blob-c absolute bottom-[-6rem] left-[20%] h-[22rem] w-[22rem] rounded-full blur-3xl" />
       <div
-        className="absolute inset-0 opacity-70"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(226,59,120,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(226,59,120,0.06) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-        }}
-      />
-      <div className="absolute -left-24 -top-24 h-[28rem] w-[28rem] rounded-full bg-[#ffd6e6] blur-3xl" />
-      <div className="absolute right-[-8rem] top-[28%] h-[26rem] w-[26rem] rounded-full bg-[#ffe4ef] blur-3xl" />
-      <div className="absolute bottom-[-6rem] left-[20%] h-[22rem] w-[22rem] rounded-full bg-[#ffd0ea]/80 blur-3xl" />
-      <div
-        className="absolute h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ffb0cc]/45 blur-3xl transition-[left,top] duration-700 ease-out"
+        className="blob-follow absolute h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl transition-[left,top] duration-700 ease-out"
         style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
       />
       {petals.map((petal) => (

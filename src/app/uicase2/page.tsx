@@ -5,7 +5,7 @@ export default function EmpoweringArtisans() {
   const router = useRouter();
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
+    <div className="mx-auto min-h-screen max-w-4xl px-4 py-12">
       {/* Back Button */}
       <button
         onClick={() => router.back()} // Navigates to the previous page (Skills or Home page)
@@ -14,14 +14,14 @@ export default function EmpoweringArtisans() {
         Back
       </button>
 
-      <h1 className="text-3xl font-bold text-gray-700 mb-6">Aquanidhi Landing Page</h1>
-      <p className="text-lg text-gray-600 mb-6">
+      <h1 className="text-3xl font-bold text-ink mb-6">Aquanidhi Landing Page</h1>
+      <p className="text-lg text-ink/70 mb-6">
         Empowering marine researchers with comprehensive, geo-referenced fish catch data to drive species-specific fisheries forecasting.
       </p>
 
       {/* Video Section */}
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-700 mb-4">Watch Our Introduction Video</h2>
+        <h2 className="text-2xl font-bold text-ink mb-4">Watch Our Introduction Video</h2>
         <div className="flex justify-center">
           <video
             controls

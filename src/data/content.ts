@@ -1,7 +1,6 @@
 export const profile = {
   name: "Nishita Shah",
   email: "nishitashah118@gmail.com",
-  location: "Delhi, India",
   school: "IGDTUW",
   degree: "B.Tech Computer Science (Artificial Intelligence) · Class of 2027",
   github: "https://github.com/Nishita-shah1",

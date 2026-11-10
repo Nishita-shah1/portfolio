@@ -43,7 +43,7 @@ export default function Skillset() {
                           className={`rounded-md px-3 py-1.5 font-mono text-sm ${
                             on
                               ? "bg-rose text-white"
-                              : "border border-[#f6c1d4] bg-white/70 text-ink"
+                              : "border border-line bg-card/70 text-ink"
                           }`}
                         >
                           {skill.name}
@@ -55,7 +55,7 @@ export default function Skillset() {
             ))}
           </div>
 
-          <div className="min-h-[11rem] overflow-hidden rounded-[2rem] border border-[#f6c1d4] bg-white/80 p-6 shadow-petal sm:p-8 lg:sticky lg:top-24">
+          <div className="min-h-[11rem] overflow-hidden rounded-[2rem] border border-line bg-card/80 p-6 shadow-petal sm:p-8 lg:sticky lg:top-24">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.name}
