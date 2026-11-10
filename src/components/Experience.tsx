@@ -1,86 +1,158 @@
-import React from 'react';
+"use client";
 
-interface ExperienceProps {
-  period: string;
-  company: string;
-  role: string;
-  description: string;
-  active: boolean;
-}
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { experiences } from "@/data/content";
 
-const Experience: React.FC = () => {
-  const experiences: ExperienceProps[] = [
-    {
-      period: 'August 2024-December 2024',
-      company: 'Greensizz Private Limited',
-      role: 'Research Associate in Web Development ',
-      description:
-        'Led the development of an e-commerce platform with MERN stack, boosting active users by 1,000+ and improving load time by 30%, while incorporating WhatsApp API to drive a 50% increase in user engagement.',
-      active: false,
-    },
-    {
-      period: 'June 2024-August 2024',
-      company: 'Sponsogram',
-      role: 'Machine Learning Engineer',
-      description:
-        'Engineered 2 machine learning models for user analysis, processing 1,000+ interactions, and contributed to the design, achieving a 15% increase in user engagement and a 10% improvement in customer satisfaction.',
-      active: false,
-    },
-    {
-      period: 'March 2024-May 2024',
-      company: 'LogistriX',
-      role: 'UI/UX Designer',
-      description:
-        'Developed responsive UI/UX across 3+ devices, raising traffic by 20% and enhanced web performance, cutting page load time by 30%, improving retention.',
-      active: false,
-    },
-  ];
+export default function Experience() {
+  const [open, setOpen] = useState<number | null>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const stops = useRef<(HTMLSpanElement | null)[]>([]);
+  const [parkTop, setParkTop] = useState<number | null>(null);
+
+  useEffect(() => {
+    const place = () => {
+      if (open === null || !trackRef.current || !stops.current[open]) {
+        setParkTop(null);
+        return;
+      }
+      const track = trackRef.current.getBoundingClientRect();
+      const stop = stops.current[open]!.getBoundingClientRect();
+      setParkTop(stop.top - track.top);
+    };
+    place();
+    const observer = new ResizeObserver(place);
+    if (trackRef.current) observer.observe(trackRef.current);
+    window.addEventListener("resize", place);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", place);
+    };
+  }, [open]);
 
   return (
-    <section id="experience" className="w-full px-4 py-12 bg-[#FEB3C7]">
-      <h2 className="text-4xl font-bold text-black mb-8 text-left mx-auto max-w-4xl">
-        Experience
-      </h2>
+    <section id="experience" className="px-5 py-20">
+      <div className="mx-auto max-w-6xl">
+        <p className="font-mono text-xs text-rose">// 02 experience</p>
+        <h2 className="mt-4 font-display text-4xl sm:text-5xl">Where the work happened</h2>
 
-      <div className="relative max-w-4xl mx-auto">
-        {/* Timeline line */}
-        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-pink-200 via-lavender-200 to-pink-200" />
+        <div ref={trackRef} className="relative mt-14">
+          <div className="absolute bottom-0 left-[7px] top-0 w-px bg-[#f6c1d4] md:left-1/2" />
+          <div
+            className={`journey-bead absolute left-[7px] z-20 h-3.5 w-3.5 -translate-x-1/2 rounded-full bg-rose shadow-[0_0_16px_rgba(226,59,120,0.7)] md:left-1/2 ${
+              parkTop !== null ? "is-parked" : ""
+            }`}
+            style={parkTop !== null ? { top: parkTop } : undefined}
+          />
 
-        {/* Experience cards */}
-        <div className="space-y-12">
-          {experiences.map((exp, index) => (
-            <div key={index} className="relative pl-8 group">
-              {/* Timeline dot */}
-              <div
-                className={`absolute left-[-4px] top-6 w-2 h-2 rounded-full transition-all duration-300 ease-in-out ${
-                  exp.active
-                    ? 'bg-pink-400 shadow-[0_0_10px_rgba(236,72,153,0.5)]'
-                    : 'bg-transparent group-hover:bg-red-600 group-hover:shadow-[0_0_10px_rgba(255,0,0,0.5)]'
-                }`}
-              />
-              <div
-                className={`absolute left-[-3px] top-8 bottom-0 w-px bg-gradient-to-b from-lavender-200 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out`}
-              />
-              <div
-                className={`bg-white rounded-xl p-6 shadow-sm transition-all duration-300 ${
-                  exp.active
-                    ? 'shadow-[0_0_20px_rgba(236,72,153,0.15)] scale-[1.02]'
-                    : 'hover:shadow-[0_0_15px_rgba(167,139,250,0.2)] hover:scale-[1.01] group-hover:shadow-[0_0_30px_rgba(255,0,0,0.3)]'
-                }`}
-              >
-                <div className="inline-block px-4 py-1 rounded-full bg-blue-100 text-sm mb-4 text-black">
-                  {exp.period}
+          <div className="space-y-5">
+            {experiences.map((item, index) => {
+              const isOpen = open === index;
+              const onLeft = index % 2 === 0;
+              return (
+                <div
+                  key={`${item.company}-${item.period}`}
+                  className={`relative pl-8 md:w-[calc(50%-1.75rem)] md:pl-0 ${
+                    onLeft ? "md:mr-auto md:pr-10" : "md:ml-auto md:pl-10"
+                  }`}
+                >
+                  <span
+                    ref={(node) => {
+                      stops.current[index] = node;
+                    }}
+                    className={`absolute top-7 z-10 h-3.5 w-3.5 -translate-x-1/2 rounded-full border-2 border-white ${
+                      isOpen ? "bg-rose" : "bg-[#f9a8d4]"
+                    } left-0 md:left-auto ${onLeft ? "md:right-0 md:translate-x-1/2" : "md:left-0 md:-translate-x-1/2"}`}
+                  />
+
+                  <article
+                    className={`overflow-hidden rounded-[1.6rem] border bg-white/85 shadow-petal transition ${
+                      isOpen ? "border-rose" : "border-white"
+                    }`}
+                  >
+                    <button
+                      type="button"
+                      aria-expanded={isOpen}
+                      onClick={() => setOpen(isOpen ? null : index)}
+                      className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                    >
+                      <span>
+                        <span className="inline-flex rounded-md bg-rose px-2.5 py-1 font-mono text-sm font-semibold tracking-tight text-white shadow-[0_8px_18px_rgba(226,59,120,0.28)]">
+                          {item.company}
+                        </span>
+                        <span className="mt-2 block text-sm text-ink/75">{item.role}</span>
+                        <span className="mt-1 block font-mono text-[11px] uppercase tracking-[0.14em] text-rose/80">
+                          {item.period}
+                        </span>
+                      </span>
+                      <span
+                        className={`inline-flex shrink-0 items-center gap-1 rounded-full border px-3 py-1 text-xs font-medium ${
+                          isOpen
+                            ? "border-rose bg-rose text-white"
+                            : "border-[#f6c1d4] bg-[#fff0f5] text-rose"
+                        }`}
+                      >
+                        {isOpen ? "Close" : "Open"}
+                        <svg
+                          viewBox="0 0 20 20"
+                          className={`h-4 w-4 transition-transform duration-300 ${isOpen ? "rotate-90" : ""}`}
+                          aria-hidden
+                        >
+                          <path
+                            d="M7 4l6 6-6 6"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          key="detail"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.35, ease: "easeOut" }}
+                          className="overflow-hidden"
+                        >
+                          <div className="border-t border-[#f6c1d4] px-5 pb-5 pt-4">
+                            <p className="font-mono text-xs text-rose">{`// ${item.place}`}</p>
+                            <p className="mt-3 text-base text-ink/80">{item.summary}</p>
+                            <ul className="mt-4 space-y-2">
+                              {item.points.map((point) => (
+                                <li key={point} className="flex gap-2 text-sm leading-relaxed text-ink/75">
+                                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rose" />
+                                  <span>{point}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            {item.certificate && (
+                              <a
+                                href={item.certificate}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(event) => event.stopPropagation()}
+                                className="relative z-20 mt-4 inline-flex text-sm font-medium text-rose hover:underline"
+                              >
+                                View GSoC certificate
+                              </a>
+                            )}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </article>
                 </div>
-                <h3 className="font-semibold mb-2 text-black">{exp.company}</h3>
-                <h4 className="text-sm font-medium text-gray-700 mb-2">{exp.role}</h4>
-                <p className="text-gray-600 text-sm">{exp.description}</p>
-              </div>
-            </div>
-          ))}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default Experience;
+}

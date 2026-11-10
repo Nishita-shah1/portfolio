@@ -1,119 +1,72 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { FaInstagram, FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { useState } from "react";
+import { FaEnvelope, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { profile } from "@/data/content";
 
-const ContactMe: React.FC = () => {
-  const socialLinks = [
-    { icon: FaInstagram, url: "https://www.instagram.com/nis_tales", color: "text-pink-500 hover:text-pink-600" },
-    { icon: FaLinkedin, url: "https://www.linkedin.com/in/nishita-shah1", color: "text-blue-700 hover:text-blue-800" },
-    { icon: FaGithub, url: "https://github.com/Nishita-shah1", color: "text-gray-800 hover:text-gray-900" },
-    { icon: FaEnvelope, url: "mailto:nishitashah118@gmail.com", color: "text-red-600 hover:text-red-700" },
-  ];
+const links = [
+  { label: "LinkedIn", href: profile.linkedin, icon: FaLinkedin },
+  { label: "GitHub", href: profile.github, icon: FaGithub },
+  { label: "Instagram", href: profile.instagram, icon: FaInstagram },
+];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
-  };
+export default function ContactMe() {
+  const [copied, setCopied] = useState(false);
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      window.location.href = `mailto:${profile.email}`;
     }
   };
 
   return (
-    <section id="contact" className="w-full height-top px-4 py-12 bg-gradient-to-r from-[#FEB3C7] to-[#9A91FF] min-h-screen flex flex-col justify-center items-center relative overflow-hidden">
-      <motion.h2 
-        className="text-4xl font-semibold text-black mb-8 text-center -mt-40"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        Contact Me
-      </motion.h2>
+    <section id="contact" className="px-5 pb-16 pt-12">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-[2.2rem] border border-white bg-gradient-to-br from-white via-[#fff0f5] to-[#ffd6e6] p-8 shadow-petal sm:p-12">
+        <p className="font-mono text-xs text-rose">// 06 contact</p>
+        <h2 className="mt-4 max-w-3xl font-display text-4xl leading-tight sm:text-6xl">
+          If it involves code, a deadline, or a leaderboard, I am probably already in.
+        </h2>
 
-      <motion.div 
-        className="max-w-4xl w-full mx-auto bg-white p-8 rounded-lg shadow-lg relative z-10"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <motion.div 
-          className="flex justify-center space-x-6"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {socialLinks.map((link, index) => (
-            <motion.a
-              key={index}
-              href={link.url}
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            onClick={copyEmail}
+            className="inline-flex items-center gap-2 rounded-full bg-rose px-5 py-3 text-sm font-medium text-white shadow-[0_12px_30px_rgba(226,59,120,0.28)] transition hover:-translate-y-0.5"
+          >
+            <FaEnvelope />
+            {copied ? "Copied" : "Copy email"}
+          </button>
+          <a
+            href={`mailto:${profile.email}`}
+            className="rounded-full border border-[#f6c1d4] bg-white/80 px-5 py-3 text-sm font-medium hover:border-rose"
+          >
+            {profile.email}
+          </a>
+        </div>
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          {links.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
               target="_blank"
-              rel="noopener noreferrer"
-              className={`${link.color} transition duration-300`}
-              variants={itemVariants}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white bg-white/80 px-4 py-2 text-sm transition hover:-translate-y-1 hover:border-rose hover:text-rose"
             >
-              <link.icon size={30} />
-            </motion.a>
+              <link.icon />
+              {link.label}
+            </a>
           ))}
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
-      {/* Decorative elements */}
-      <motion.div 
-        className="absolute top-1/4 left-1/4 w-20 h-20 bg-pink-300 rounded-full opacity-50"
-        animate={{
-          scale: [1, 1.2, 1],
-          rotate: [0, 180, 360],
-        }}
-        transition={{
-          duration: 5,
-          ease: "easeInOut",
-          times: [0, 0.5, 1],
-          repeat: Infinity,
-        }}
-      />
-      <motion.div 
-        className="absolute bottom-1/4 right-1/4 w-16 h-16 bg-purple-300 rounded-full opacity-50"
-        animate={{
-          scale: [1, 1.5, 1],
-          rotate: [0, -180, -360],
-        }}
-        transition={{
-          duration: 7,
-          ease: "easeInOut",
-          times: [0, 0.5, 1],
-          repeat: Infinity,
-        }}
-      />
-      <motion.div 
-        className="absolute top-3/4 left-1/3 w-12 h-12 bg-blue-300 rounded-full opacity-50"
-        animate={{
-          y: [0, -30, 0],
-          x: [0, 30, 0],
-        }}
-        transition={{
-          duration: 6,
-          ease: "easeInOut",
-          times: [0, 0.5, 1],
-          repeat: Infinity,
-        }}
-      />
+      <p className="mx-auto mt-8 max-w-6xl text-center text-xs text-ink/45">
+        Nishita Shah · {profile.degree}
+      </p>
     </section>
   );
-};
-
-export default ContactMe;
-
+}

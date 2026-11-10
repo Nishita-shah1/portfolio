@@ -1,113 +1,109 @@
-'use client';
+"use client";
 
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-type NavItem = {
-  name: string;
-  href: string;
-};
-
-const navItems: NavItem[] = [
-  { name: 'About me', href: '#hero' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'My work', href: '#skills' },
-
-  { name: 'Skills', href: '#skillset' },
-  { name: 'Contact me', href: '#contact' },
+const navItems = [
+  { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
+  { name: "Projects", href: "#projects" },
+  { name: "Design", href: "#design" },
+  { name: "Skills", href: "#skills" },
+  { name: "Contact", href: "#contact" },
 ];
 
 export default function Nav() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
-  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("about");
+  const [progress, setProgress] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = navItems.map(item => item.href.slice(1));
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
+    const onScroll = () => {
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(height > 0 ? window.scrollY / height : 0);
+      setScrolled(window.scrollY > 12);
+
+      const current = navItems
+        .map((item) => item.href.slice(1))
+        .find((id) => {
+          const element = document.getElementById(id);
+          if (!element) return false;
           const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom > 100;
-        }
-        return false;
-      });
-      if (currentSection) {
-        setActiveSection(currentSection);
-      }
+          return rect.top <= 140 && rect.bottom > 140;
+        });
+      if (current) setActive(current);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   return (
-    <nav className="w-full py-4 bg-white bg-opacity-90 backdrop-blur-sm fixed top-0 left-0 z-50 shadow-md">
-      {/* Desktop Navigation */}
-      <div className="hidden md:flex justify-center w-full gap-6">
-        {navItems.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={`px-6 py-2 rounded-full text-sm transition-all duration-300
-              text-black 
-              ${item.href.slice(1) === activeSection
-                ? 'border-2 border-pink-500 shadow-[0_0_15px_rgba(236,72,153,0.5)]'
-                : 'hover:bg-pink-100 hover:shadow-[0_0_10px_rgba(236,72,153,0.3)]'
-              }
-              hover:text-black
-              relative group`}
-          >
-            {item.name}
-            {/* Glitter effect on hover */}
-            <span className="absolute inset-0 bg-gradient-to-r from-pink-500 via-pink-300 to-pink-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-sm"></span>
-          </Link>
-        ))}
-      </div>
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-white/75 shadow-petal backdrop-blur-xl" : "bg-white/40 backdrop-blur-md"
+      }`}
+    >
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
+        <Link href="#top" className="font-mono text-lg tracking-tight text-rose">
+          ns.
+        </Link>
 
-      {/* Mobile Navigation */}
-      <div className="flex md:hidden justify-between items-center px-4">
+        <nav className="hidden items-center gap-1 md:flex">
+          {navItems.map((item) => {
+            const on = item.href.slice(1) === active;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`rounded-full px-3.5 py-1.5 font-mono text-xs transition ${
+                  on
+                    ? "bg-rose text-white shadow-[0_8px_20px_rgba(226,59,120,0.28)]"
+                    : "text-ink/80 hover:bg-[#ffe3ee]"
+                }`}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
+        </nav>
+
         <button
-          onClick={toggleMenu}
-          className="text-black text-2xl focus:outline-none"
+          type="button"
+          className="rounded-full border border-[#f6c1d4] px-3 py-1.5 text-sm md:hidden"
+          aria-expanded={open}
           aria-label="Toggle menu"
+          onClick={() => setOpen((value) => !value)}
         >
-          &#9776; {/* Hamburger Icon */}
+          {open ? "Close" : "Menu"}
         </button>
       </div>
 
-      {isMenuOpen && (
-        <div className="absolute top-14 left-0 w-full bg-white shadow-lg">
-          <ul className="flex flex-col items-center gap-4 py-4">
+      {open && (
+        <div className="border-t border-[#f6c1d4] bg-white/95 px-5 py-4 md:hidden">
+          <div className="flex flex-col gap-2">
             {navItems.map((item) => (
-              <li key={item.href} onClick={() => setIsMenuOpen(false)}>
-                <Link
-                  href={item.href}
-                  className={`px-6 py-2 rounded-full text-sm transition-all duration-300
-                    text-black 
-                    ${item.href.slice(1) === activeSection
-                      ? 'border-2 border-pink-500 shadow-[0_0_15px_rgba(236,72,153,0.5)]'
-                      : 'hover:bg-pink-100 hover:shadow-[0_0_10px_rgba(236,72,153,0.3)]'
-                    }
-                    hover:text-black
-                    relative group`}
-                >
-                  {item.name}
-                  {/* Glitter effect on hover */}
-                  <span className="absolute inset-0 bg-gradient-to-r from-pink-500 via-pink-300 to-pink-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-sm"></span>
-                </Link>
-              </li>
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="rounded-md px-3 py-2 font-mono text-sm hover:bg-[#ffe3ee]"
+              >
+                {item.name}
+              </Link>
             ))}
-          </ul>
+          </div>
         </div>
       )}
-    </nav>
+
+      <div className="h-[3px] w-full bg-[#ffe3ee]">
+        <div
+          className="h-full bg-gradient-to-r from-[#f9a8d4] to-rose transition-[width] duration-150"
+          style={{ width: `${progress * 100}%` }}
+        />
+      </div>
+    </header>
   );
 }
-
