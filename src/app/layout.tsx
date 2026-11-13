@@ -32,10 +32,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${display.variable} ${sans.variable} ${mono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`dark ${display.variable} ${sans.variable} ${mono.variable}`}>
       <body className="bg-blush font-sans text-ink antialiased">
         <Script id="theme-boot" strategy="beforeInteractive">
-          {`try{if(localStorage.getItem("theme")==="dark"){document.documentElement.classList.add("dark")}}catch(e){}`}
+          {`try{if(localStorage.getItem("theme")==="light"){document.documentElement.classList.remove("dark")}}catch(e){}`}
         </Script>
         <ClearServiceWorker />
         <SiteBackground />
